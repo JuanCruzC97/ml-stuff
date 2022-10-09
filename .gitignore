@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 
 # Others
-.$diagrams.drawio.bkp
-.drawio.dtmp
+.drawio
