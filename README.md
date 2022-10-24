@@ -7,9 +7,9 @@ Repositorio disponible para desarrollar y compartir temas interesantes del mundo
 ### En proceso
 
 * Deep Learning
-* Computer Vision
+* Representaciones
 
 ### Futuros
 
-* Representaciones
+* Computer Vision
 * Generative
