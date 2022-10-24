@@ -50,6 +50,10 @@ def make_classification_dataset(n_samples, noise=0.1, factor_0=0.5, factor_1=0.2
                        "y":target})
     
     # Definimos a la variable respuesta como variable categórica.
-    df = df.astype({"y":"category"})
+    # Mezcla las observaciones.
+    df = (df
+          .astype({"y":"category"})
+          .sample(frac=1)
+          .reset_index(drop=True))
     
     return df
