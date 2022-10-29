@@ -28,8 +28,8 @@ def create_img_dataset(directory, img_list, labels_list, img_shape, scale=False,
       data[i] = data[i]/255
 
     targets[i] = labels_list[i]
-  
-  #targets = targets.ravel()
+
+  targets = targets.astype(int)
 
   return data, targets
 

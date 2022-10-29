@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.metrics import confusion_matrix
 
 def prediction_to_class(x):
   
@@ -21,3 +22,16 @@ def model_evaluation(model, X_train, y_train, X_val, y_val, X_test, y_test, resu
 
   if result:
     return df_eval
+
+
+def display_confusion_matrix(y_true, y_pred):
+    # No funciona si el y_true pasado no incluye al menos una observacion de cada clase.
+    
+    m = pd.DataFrame(confusion_matrix(y_true=y_true, y_pred=y_pred)) 
+
+    labels = ["Forests", "Mountains", "Sea", "Street"]
+
+    m.index = pd.MultiIndex.from_tuples([("True", label) for label in labels])
+    m.columns = pd.MultiIndex.from_tuples([("Pred", label) for label in labels])
+    
+    display(m)
