@@ -1,8 +1,8 @@
 # Permite hacer el plot interactivo de imágenes pasando un array.
 import numpy as np
 import plotly.express as px
-from predictions import prediction_to_class
-from operations import transform_img
+from .predictions import prediction_to_class
+from .operations import transform_img
 
 def plot_img(img_array, targets=None, grayscale=False):
 
