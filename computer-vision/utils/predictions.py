@@ -14,12 +14,28 @@ def prediction_to_class(x):
 
 def model_evaluation(model, X_train, y_train, X_val=None, y_val=None, X_test=None, y_test=None, result=False):
     
-    #train_eval = model.evaluate(X_train, y_train, verbose=0, return_dict=True, batch_size=32)
+    train_eval = model.evaluate(X_train, y_train, verbose=0, return_dict=True, batch_size=32)
     
-    eval = dict(train = model.evaluate(X_train, y_train, verbose=0, return_dict=True, batch_size=32),
-                val = model.evaluate(X_val, y_val, verbose=0, return_dict=True, batch_size=32),
-                test = model.evaluate(X_test, y_test, verbose=0, return_dict=True, batch_size=32))
-
+    if X_val is not None and y_val is not None and X_test is not None and y_test is not None:
+    
+        eval = dict(train = train_eval,
+                    val = model.evaluate(X_val, y_val, verbose=0, return_dict=True, batch_size=32),
+                    test = model.evaluate(X_test, y_test, verbose=0, return_dict=True, batch_size=32))
+        
+    elif X_val is not None and y_val is not None:
+        
+         eval = dict(train = train_eval,
+                     val = model.evaluate(X_val, y_val, verbose=0, return_dict=True, batch_size=32))       
+         
+    elif X_test is not None and y_test is not None:
+        
+        eval = dict(train = train_eval,
+                    test = model.evaluate(X_test, y_test, verbose=0, return_dict=True, batch_size=32)) 
+        
+    else: 
+        
+        eval = dict(train = train_eval)
+        
     df_eval = pd.DataFrame(eval)
     display(df_eval)
 
